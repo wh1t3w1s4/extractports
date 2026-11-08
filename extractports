@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+import re
+
+color_verde = "\033[32m"
+color_azul = "\033[34m"
+color_reset = "\033[0m"
+
+print(f"{color_azul}Paste your data and press enter twice:{color_reset}")
+lineas = []
+
+while True:
+    fila = input()
+    if fila == "":
+        break
+    lineas.append(fila)
+
+contenido = "\n".join(lineas)
+
+
+puertos = re.findall(r"^(\d+)/", contenido, re.MULTILINE)
+
+## Filtro para verificar que no haya ningun numero que no pueda ser puerto, que este entre 1 y 65535 ##
+puertos_validos = []
+for numero in puertos:
+    valor = int(numero)
+    if 1 <= valor <= 65535:
+        puertos_validos.append(str(valor))
+
+
+puertos = ",".join(sorted(set(puertos_validos), key=int))
+print(f"{color_azul}Discovered open ports:{color_reset}", f"{color_verde}{puertos}{color_reset}")
