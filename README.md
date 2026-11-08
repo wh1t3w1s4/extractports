@@ -53,7 +53,7 @@ chmod +x extractports
 
 4. Movemos el script a esa ruta con privilegios de root
 ```
-sudo mv extractports /ust/local/bin
+sudo mv extractports /usr/local/bin
 ```
 5. Reiniciamos la configuración de la terminal (bash -> ~/.bashrc | zsh -> ~/.zshrc)
 ```
